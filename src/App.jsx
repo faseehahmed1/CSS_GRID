@@ -5,7 +5,10 @@ function App() {
   const [currentJustifyOption, setCurrentJustifyOption] =
     useState("flex-start");
   const [currentAlignOption, setCurrentAlignOption] = useState("stretch");
-  const [currentAxisOption, setCurrentAxisOption] = useState("row")
+  const [currentAxisOption, setCurrentAxisOption] = useState("row");
+  const [currentSelfAlignOption, setCurrentSelfAlignOption] =
+    useState("stretch");
+
   return (
     <>
       <ul
@@ -13,13 +16,13 @@ function App() {
         style={{
           justifyContent: currentJustifyOption,
           alignItems: currentAlignOption,
-          flexDirection: currentAxisOption
+          flexDirection: currentAxisOption,
         }}
       >
         <li>Hello</li>
         <li>to</li>
         <li>the</li>
-        <li>World</li>
+        <li style={{ alignSelf: currentSelfAlignOption }}>World</li>
       </ul>
       <p>
         justify-content: <code>{currentJustifyOption}</code>{" "}
@@ -29,6 +32,11 @@ function App() {
         align-items: <code>{currentAlignOption}</code>{" "}
         {currentAlignOption === "stretch" && "(Default)"}
       </p>
+      <p>
+        self-align (last-li): <code>{currentSelfAlignOption}</code>{" "}
+        {currentSelfAlignOption === "stretch" && "(Default)"}
+      </p>
+
       <select
         value={currentJustifyOption}
         onChange={(e) => setCurrentJustifyOption(e.target.value)}
@@ -52,6 +60,14 @@ function App() {
       <select onChange={(e) => setCurrentAxisOption(e.target.value)}>
         <option value="row">row (Default)</option>
         <option value="column">column</option>
+      </select>
+
+      <select onChange={(e) => setCurrentSelfAlignOption(e.target.value)}>
+        <option value="stretch">stretch (Default)</option>
+        <option value="flex-start">flex-start</option>
+        <option value="flex-end">flex-end</option>
+        <option value="center">center</option>
+        <option value="baseline">baseline</option>
       </select>
     </>
   );
