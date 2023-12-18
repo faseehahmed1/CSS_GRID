@@ -4,8 +4,9 @@ import { useState } from "react";
 function App() {
   const [currentJustifyOption, setCurrentJustifyOption] =
     useState("flex-start");
+  const [currentAlignContentOption, setCurrentAlignContentOption] =
+    useState("flex-start");
   const [currentAlignOption, setCurrentAlignOption] = useState("stretch");
-  const [currentAxisOption, setCurrentAxisOption] = useState("row");
   const [currentSelfAlignOption, setCurrentSelfAlignOption] =
     useState("stretch");
 
@@ -15,8 +16,8 @@ function App() {
         className="wrapper"
         style={{
           justifyContent: currentJustifyOption,
+          alignContent: currentAlignContentOption,
           alignItems: currentAlignOption,
-          flexDirection: currentAxisOption,
         }}
       >
         <li>
@@ -27,11 +28,15 @@ function App() {
         <li style={{ alignSelf: currentSelfAlignOption }}>World</li>
       </ul>
       <p>
-        justify-content: <code>{currentJustifyOption}</code>{" "}
+        justify-content: (col) <code>{currentJustifyOption}</code>{" "}
         {currentJustifyOption === "flex-start" && "(Default)"}
       </p>
       <p>
-        align-items: <code>{currentAlignOption}</code>{" "}
+        align-content: (row) <code>{currentAlignContentOption}</code>{" "}
+        {currentAlignContentOption === "flex-start" && "(Default)"}
+      </p>
+      <p>
+        align-items: (cell) <code>{currentAlignOption}</code>{" "}
         {currentAlignOption === "stretch" && "(Default)"}
       </p>
       <p>
@@ -39,38 +44,61 @@ function App() {
         {currentSelfAlignOption === "stretch" && "(Default)"}
       </p>
 
-      <select
-        value={currentJustifyOption}
-        onChange={(e) => setCurrentJustifyOption(e.target.value)}
-      >
-        <option value="flex-start">flex-start (Default)</option>
-        <option value="flex-end">flex-end</option>
-        <option value="center">center</option>
-        <option value="space-between">space-between</option>
-        <option value="space-around">space-around</option>
-        <option value="space-evenly">space-evenly</option>
-      </select>
-
-      <select onChange={(e) => setCurrentAlignOption(e.target.value)}>
-        <option value="stretch">stretch (Default)</option>
-        <option value="flex-start">flex-start</option>
-        <option value="flex-end">flex-end</option>
-        <option value="center">center</option>
-        <option value="baseline">baseline</option>
-      </select>
-
-      <select onChange={(e) => setCurrentAxisOption(e.target.value)}>
-        <option value="row">row (Default)</option>
-        <option value="column">column</option>
-      </select>
-
-      <select onChange={(e) => setCurrentSelfAlignOption(e.target.value)}>
-        <option value="stretch">stretch (Default)</option>
-        <option value="flex-start">flex-start</option>
-        <option value="flex-end">flex-end</option>
-        <option value="center">center</option>
-        <option value="baseline">baseline</option>
-      </select>
+      <div className="dropdowns">
+        <label htmlFor="currentJustifyOption">
+          justify-content (col)
+          <select
+            value={currentJustifyOption}
+            onChange={(e) => setCurrentJustifyOption(e.target.value)}
+            id="currentJustifyOption"
+          >
+            <option value="flex-start">flex-start (Default)</option>
+            <option value="flex-end">flex-end</option>
+            <option value="center">center</option>
+            <option value="space-between">space-between</option>
+            <option value="space-around">space-around</option>
+            <option value="space-evenly">space-evenly</option>
+          </select>
+        </label>
+  
+        <label htmlFor="currentAlignContentOption">
+          align-content (row)
+          <select
+            value={currentAlignContentOption}
+            onChange={(e) => setCurrentAlignContentOption(e.target.value)}
+            id="currentAlignContentOption"
+          >
+            <option value="flex-start">flex-start (Default)</option>
+            <option value="flex-end">flex-end</option>
+            <option value="center">center</option>
+            <option value="space-between">space-between</option>
+            <option value="space-around">space-around</option>
+            <option value="space-evenly">space-evenly</option>
+          </select>
+        </label>
+  
+        <label htmlFor="align-items">
+          align-items: (cell)
+          <select onChange={(e) => setCurrentAlignOption(e.target.value)}>
+            <option value="stretch">stretch (Default)</option>
+            <option value="flex-start">flex-start</option>
+            <option value="flex-end">flex-end</option>
+            <option value="center">center</option>
+            <option value="baseline">baseline</option>
+          </select>
+        </label>
+  
+        <label htmlFor="setCurrentSelfAlignOption">
+          self-align (last-li)
+          <select onChange={(e) => setCurrentSelfAlignOption(e.target.value)}>
+            <option value="stretch">stretch (Default)</option>
+            <option value="flex-start">flex-start</option>
+            <option value="flex-end">flex-end</option>
+            <option value="center">center</option>
+            <option value="baseline">baseline</option>
+          </select>
+        </label>
+      </div>
     </>
   );
 }

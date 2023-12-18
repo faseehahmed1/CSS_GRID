@@ -19,7 +19,9 @@ p{
 }
 
 .wrapper{
-  display: flex;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: 100px 100px;
   width: 600px;
   border: solid black;
   font-size: 22px;
@@ -50,4 +52,15 @@ code{
   background-color: rgb(168, 164, 164);
   padding: 4px;
   border-radius: 3px;
+}
+
+label{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dropdowns{
+  display: flex;
+  gap: 20px;
 }
