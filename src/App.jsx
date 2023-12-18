@@ -2,8 +2,10 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [currentJustifyOption, setCurrentJustifyOption] =
+  const [currentJustifyContentOption, setCurrentJustifyContentOption] =
     useState("flex-start");
+  const [currentJustifyItemOption, setCurrentJustifyItemOption] =
+    useState("stretch");
   const [currentAlignContentOption, setCurrentAlignContentOption] =
     useState("flex-start");
   const [currentAlignOption, setCurrentAlignOption] = useState("stretch");
@@ -15,7 +17,8 @@ function App() {
       <ul
         className="wrapper"
         style={{
-          justifyContent: currentJustifyOption,
+          justifyContent: currentJustifyContentOption,
+          justifyItems: currentJustifyItemOption,
           alignContent: currentAlignContentOption,
           alignItems: currentAlignOption,
         }}
@@ -28,16 +31,20 @@ function App() {
         <li style={{ alignSelf: currentSelfAlignOption }}>World</li>
       </ul>
       <p>
-        justify-content: (col) <code>{currentJustifyOption}</code>{" "}
-        {currentJustifyOption === "flex-start" && "(Default)"}
+        justify-content: (col) <code>{currentJustifyContentOption}</code>{" "}
+        {currentJustifyContentOption === "flex-start" && "(Default)"}
       </p>
       <p>
         align-content: (row) <code>{currentAlignContentOption}</code>{" "}
         {currentAlignContentOption === "flex-start" && "(Default)"}
       </p>
       <p>
-        align-items: (cell) <code>{currentAlignOption}</code>{" "}
+        align-items: (cell-rowDir) <code>{currentAlignOption}</code>{" "}
         {currentAlignOption === "stretch" && "(Default)"}
+      </p>
+      <p>
+        justify-items: (cell-colDir) <code>{currentJustifyItemOption}</code>{" "}
+        {currentJustifyItemOption === "stretch" && "(Default)"}
       </p>
       <p>
         self-align (last-li): <code>{currentSelfAlignOption}</code>{" "}
@@ -48,8 +55,8 @@ function App() {
         <label htmlFor="currentJustifyOption">
           justify-content (col)
           <select
-            value={currentJustifyOption}
-            onChange={(e) => setCurrentJustifyOption(e.target.value)}
+            value={currentJustifyContentOption}
+            onChange={(e) => setCurrentJustifyContentOption(e.target.value)}
             id="currentJustifyOption"
           >
             <option value="flex-start">flex-start (Default)</option>
@@ -78,7 +85,18 @@ function App() {
         </label>
   
         <label htmlFor="align-items">
-          align-items: (cell)
+          align-items: (cell-rowDir)
+          <select onChange={(e) => setCurrentJustifyItemOption(e.target.value)}>
+            <option value="stretch">stretch (Default)</option>
+            <option value="flex-start">flex-start</option>
+            <option value="flex-end">flex-end</option>
+            <option value="center">center</option>
+            <option value="baseline">baseline</option>
+          </select>
+        </label>
+
+        <label htmlFor="justify-items">
+          justify-items: (cell-colDir)
           <select onChange={(e) => setCurrentAlignOption(e.target.value)}>
             <option value="stretch">stretch (Default)</option>
             <option value="flex-start">flex-start</option>
