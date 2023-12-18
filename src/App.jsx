@@ -11,9 +11,11 @@ function App() {
   const [currentAlignOption, setCurrentAlignOption] = useState("stretch");
   const [currentSelfAlignOption, setCurrentSelfAlignOption] =
     useState("stretch");
+  const [currentJustifySelfAlignOption, setJustifyCurrentSelfAlignOption] =
+    useState("stretch");
 
   return (
-    <>
+    <div className="wrapper2">
       <ul
         className="wrapper"
         style={{
@@ -28,7 +30,14 @@ function App() {
         </li>
         <li>to</li>
         <li>the</li>
-        <li style={{ alignSelf: currentSelfAlignOption }}>World</li>
+        <li
+          style={{
+            alignSelf: currentSelfAlignOption,
+            justifySelf: currentJustifySelfAlignOption,
+          }}
+        >
+          World
+        </li>
       </ul>
       <p>
         justify-content: (col) <code>{currentJustifyContentOption}</code>{" "}
@@ -47,8 +56,12 @@ function App() {
         {currentJustifyItemOption === "stretch" && "(Default)"}
       </p>
       <p>
-        self-align (last-li): <code>{currentSelfAlignOption}</code>{" "}
+      align-self (last-li): <code>{currentSelfAlignOption}</code>{" "}
         {currentSelfAlignOption === "stretch" && "(Default)"}
+      </p>
+      <p>
+        justify-self (last-li): <code>{currentJustifySelfAlignOption}</code>{" "}
+        {currentJustifySelfAlignOption === "stretch" && "(Default)"}
       </p>
 
       <div className="dropdowns">
@@ -67,7 +80,7 @@ function App() {
             <option value="space-evenly">space-evenly</option>
           </select>
         </label>
-  
+
         <label htmlFor="currentAlignContentOption">
           align-content (row)
           <select
@@ -83,10 +96,13 @@ function App() {
             <option value="space-evenly">space-evenly</option>
           </select>
         </label>
-  
+
         <label htmlFor="align-items">
           align-items: (cell-rowDir)
-          <select id="align-items" onChange={(e) => setCurrentAlignOption(e.target.value)}>
+          <select
+            id="align-items"
+            onChange={(e) => setCurrentAlignOption(e.target.value)}
+          >
             <option value="stretch">stretch (Default)</option>
             <option value="flex-start">flex-start</option>
             <option value="flex-end">flex-end</option>
@@ -105,9 +121,9 @@ function App() {
             <option value="baseline">baseline</option>
           </select>
         </label>
-  
+
         <label htmlFor="setCurrentSelfAlignOption">
-          self-align (last-li)
+        align-self (last-li)
           <select onChange={(e) => setCurrentSelfAlignOption(e.target.value)}>
             <option value="stretch">stretch (Default)</option>
             <option value="flex-start">flex-start</option>
@@ -116,8 +132,19 @@ function App() {
             <option value="baseline">baseline</option>
           </select>
         </label>
+
+        <label htmlFor="setCurrentSelfAlignOption">
+          justify-self (last-li)
+          <select onChange={(e) => setJustifyCurrentSelfAlignOption(e.target.value)}>
+            <option value="stretch">stretch (Default)</option>
+            <option value="flex-start">flex-start</option>
+            <option value="flex-end">flex-end</option>
+            <option value="center">center</option>
+            <option value="baseline">baseline</option>
+          </select>
+        </label>
       </div>
-    </>
+    </div>
   );
 }
 

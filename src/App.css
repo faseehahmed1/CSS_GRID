@@ -14,6 +14,12 @@ body{
   justify-content: center;
 }
 
+.wrapper2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 p{
   text-align: center;
 }
@@ -58,6 +64,8 @@ label{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-size: 14px;
+  
 }
 
 .dropdowns{
