@@ -19,7 +19,9 @@ function App() {
           flexDirection: currentAxisOption,
         }}
       >
-        <li>Hello</li>
+        <li>
+          Hello <br /> Friend
+        </li>
         <li>to</li>
         <li>the</li>
         <li style={{ alignSelf: currentSelfAlignOption }}>World</li>
