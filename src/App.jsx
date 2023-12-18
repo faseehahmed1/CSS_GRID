@@ -86,7 +86,7 @@ function App() {
   
         <label htmlFor="align-items">
           align-items: (cell-rowDir)
-          <select onChange={(e) => setCurrentJustifyItemOption(e.target.value)}>
+          <select id="align-items" onChange={(e) => setCurrentAlignOption(e.target.value)}>
             <option value="stretch">stretch (Default)</option>
             <option value="flex-start">flex-start</option>
             <option value="flex-end">flex-end</option>
@@ -97,7 +97,7 @@ function App() {
 
         <label htmlFor="justify-items">
           justify-items: (cell-colDir)
-          <select onChange={(e) => setCurrentAlignOption(e.target.value)}>
+          <select onChange={(e) => setCurrentJustifyItemOption(e.target.value)}>
             <option value="stretch">stretch (Default)</option>
             <option value="flex-start">flex-start</option>
             <option value="flex-end">flex-end</option>
